@@ -1,7 +1,8 @@
+import { JWT_TOKEN } from '@/constants/jwt'
+import { userSignUp } from '@/services/auth/userSignUp'
+import type { AxiosResponse } from 'axios'
 import { defineStore } from 'pinia'
 import { userSignIn } from '../services/auth/userSignIn'
-import type { AxiosResponse } from 'axios'
-import { userSignUp } from '@/services/auth/userSignUp'
 
 export const useAuthStore = defineStore('auth', () => {
   const handleSignIn = async (
@@ -12,7 +13,7 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await userSignIn(email, password)
       const { token } = response.data
 
-      localStorage.setItem('token', token)
+      localStorage.setItem(JWT_TOKEN, token)
       return response
     } catch (error: unknown) {
       return error
@@ -24,7 +25,7 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await userSignUp(data.name, data.email, data.password)
       const { token } = response.data
 
-      localStorage.setItem('token', token)
+      localStorage.setItem(JWT_TOKEN, token)
       return response
     } catch (error: unknown) {
       return error
