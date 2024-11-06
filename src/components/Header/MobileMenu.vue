@@ -22,7 +22,7 @@
 
     <QSeparator />
 
-    <QItem clickable v-ripple @click="onLogout">
+    <QItem clickable @click="onLogout">
       <QItemSection avatar>
         <QIcon name="logout" />
       </QItemSection>
