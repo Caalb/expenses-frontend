@@ -6,42 +6,47 @@
       </QCardSection>
 
       <QCardSection>
-        <QForm @submit="onSubmit" class="q-gutter-md">
-          <QInput
-            v-model="formState.email"
-            type="email"
-            label="E-mail"
-            outlined
-            :rules="validationRules.email"
-          >
-            <template v-slot:prepend>
-              <QIcon name="email" />
-            </template>
-          </QInput>
+        <Form @submit="onSubmit" class="q-gutter-md" :validation-schema="validationSchema">
+          <Field name="email" v-slot="{ errorMessage, value, field }">
+            <QInput
+              type="email"
+              label="E-mail"
+              outlined
+              :model-value="value"
+              v-bind="field"
+              :error-message="errorMessage"
+              :error="!!errorMessage"
+            >
+              <template v-slot:prepend>
+                <QIcon name="email" />
+              </template>
+            </QInput>
+          </Field>
 
-          <QInput
-            v-model="formState.password"
-            :type="passwordVisible ? 'text' : 'password'"
-            label="Senha"
-            outlined
-            :rules="validationRules.password"
-          >
-            <template v-slot:prepend>
-              <QIcon name="lock" />
-            </template>
-            <template v-slot:append>
-              <QIcon
-                :name="passwordVisible ? 'visibility' : 'visibility_off'"
-                class="cursor-pointer"
-                @click="togglePasswordVisibility"
-              />
-            </template>
-          </QInput>
+          <Field name="password" v-slot="{ errorMessage, value, field }">
+            <QInput
+              :type="passwordVisible ? 'text' : 'password'"
+              label="Senha"
+              outlined
+              :model-value="value"
+              v-bind="field"
+              :error-message="errorMessage"
+              :error="!!errorMessage"
 
-          <div class="flex justify-between q-mt-sm">
-            <QCheckbox v-model="formState.rememberMe" label="Lembrar-me" />
-            <QBtn flat color="primary" label="Esqueceu a senha?" @click="handleForgotPassword" />
-          </div>
+            >
+              <template v-slot:prepend>
+                <QIcon name="lock" />
+              </template>
+
+              <template v-slot:append>
+                <QIcon
+                  :name="passwordVisible ? 'visibility' : 'visibility_off'"
+                  class="cursor-pointer"
+                  @click="togglePasswordVisibility"
+                />
+              </template>
+            </QInput>
+          </Field>
 
           <div class="full-width q-mt-md">
             <QBtn
@@ -52,7 +57,7 @@
               :loading="loading"
             />
           </div>
-        </QForm>
+        </Form>
       </QCardSection>
 
       <QCardSection class="text-center q-pa-sm">
@@ -66,82 +71,55 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { useQuasar } from 'quasar'
-import { QPage, QCard, QCardSection, QInput, QCheckbox, QBtn, QIcon, QForm} from 'quasar'
-
-interface LoginCredentials {
-  email: string
-  password: string
-}
-
-type ValidationRule = (val: string) => boolean | string
-
-interface ValidationRules {
-  email: ValidationRule[]
-  password: ValidationRule[]
-}
+import { ref } from 'vue';
+import { QBtn, QCard, QCardSection, QIcon, QInput, QPage, useQuasar } from 'quasar';
+import { Form, Field } from 'vee-validate';
+import { toTypedSchema } from '@vee-validate/zod';
+import { z } from 'zod';
+import { useAuthStore } from '@/stores/auth';
+import type { AxiosResponse } from 'axios';
+import { useRouter } from 'vue-router';
 
 const $q = useQuasar()
+const router = useRouter()
+const { handleSignIn } = useAuthStore()
 
-interface FormState extends LoginCredentials {
-  rememberMe: boolean
-}
+const validationSchema = toTypedSchema(
+  z.object({
+    email: z.string().email({ message: 'E-mail inválido' }),
+    password: z.string().min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+  })
+)
 
 const loading = ref<boolean>(false)
 const passwordVisible = ref<boolean>(false)
-
-const formState = reactive<FormState>({
-  email: '',
-  password: '',
-  rememberMe: false,
-})
-
-const validationRules: ValidationRules = {
-  email: [
-    (val: string) => !!val || 'E-mail é obrigatório',
-    (val: string) => val.includes('@') || 'E-mail inválido',
-  ],
-  password: [
-    (val: string) => !!val || 'Senha é obrigatória',
-    (val: string) => val.length >= 6 || 'A senha deve ter pelo menos 6 caracteres',
-  ],
-}
-
-const togglePasswordVisibility = (): void => {
-  passwordVisible.value = !passwordVisible.value
-}
-
-const handleForgotPassword = (): void => {
-  console.log('Recuperar senha')
-}
+const togglePasswordVisibility = (): boolean => passwordVisible.value = !passwordVisible.value
 
 const handleRegister = (): void => {
-  console.log('Ir para página de registro')
+  router.push({ name: 'register' })
 }
 
-const onSubmit = async (event: Event): Promise<void> => {
-  event.preventDefault()
-  try {
+const onSubmit = async (values: Record<string, string>): Promise<void> => {
     loading.value = true
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const response = await handleSignIn(values.email, values.password) as AxiosResponse
+    loading.value = false
 
-    console.log('Dados do formulário:', formState)
+    if(response && ~~(response.status/100) === 2) {
+      $q.notify({
+        color: 'positive',
+        message: 'Login realizado com sucesso!',
+        icon: 'check',
+      })
 
-    $q.notify({
-      color: 'positive',
-      message: 'Login realizado com sucesso!',
-      icon: 'check',
-    })
-  } catch (error: unknown) {
-    $q.notify({
-      color: 'negative',
-      message: (error as Error)?.message ?? 'Falha ao realizar login',
-      icon: 'error',
-    })
-  }
+      router.push({ name: 'home' })
+      return;
+    }
 
-  loading.value = false
+  $q.notify({
+    color: 'negative',
+    message: ((response as unknown) as Error)?.message ?? 'Falha ao realizar login',
+    icon: 'error',
+  })
 }
 </script>
 
