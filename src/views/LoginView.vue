@@ -17,7 +17,7 @@
               :error-message="errorMessage"
               :error="!!errorMessage"
             >
-              <template v-slot:prepend>
+              <template #prepend>
                 <QIcon name="email" />
               </template>
             </QInput>
@@ -34,11 +34,11 @@
               :error="!!errorMessage"
 
             >
-              <template v-slot:prepend>
+              <template #prepend>
                 <QIcon name="lock" />
               </template>
 
-              <template v-slot:append>
+              <template #append>
                 <QIcon
                   :name="passwordVisible ? 'visibility' : 'visibility_off'"
                   class="cursor-pointer"
