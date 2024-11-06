@@ -16,6 +16,7 @@
     "@quasar/extras": "^1.0.0",
     "@vee-validate/zod": "^4.14.6",
     "axios": "^1.7.7",
+    "date-fns": "^4.1.0",
     "pinia": "^2.2.6",
     "quasar": "^2.16.0",
     "vee-validate": "^4.14.6",
