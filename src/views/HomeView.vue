@@ -1,12 +1,16 @@
 <template>
-  <main>
-    Carlos Jr
-  </main>
+  <QLayout view="hHh lpR fFf">
+    <AppHeader />
+
+    <QPageContainer>
+      <QPage padding>
+
+      </QPage>
+    </QPageContainer>
+  </QLayout>
 </template>
 
-<style scoped>
-main {
-  display: flex;
-  height: 100vh; /* Centraliza verticalmente */
-}
-</style>
+<script setup lang="ts">
+import { QLayout, QPageContainer, QPage } from 'quasar'
+import AppHeader from '@/components/header/AppHeader.vue'
+</script>
