@@ -47,15 +47,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted} from 'vue'
 import { useQuasar } from 'quasar'
 import { QDialog, QCard, QCardSection, QBtn, QSpace } from 'quasar'
 import ExpenseTable from '@/components/Expenses/ExpensesTable.vue'
 import ExpenseForm from '@/components/Expenses/ExpenseForm.vue'
 import DeleteExpenseDialog from '@/components/Expenses/DeleteExpenseDialog.vue'
 import type { Expense, ExpenseFormData } from '@/types/expense'
+import { useExpensesStore } from '@/stores/expenses'
 
 const $q = useQuasar()
+const { expenses, fetchExpenses } = useExpensesStore()
 
 const loading = ref(false)
 const submitting = ref(false)
@@ -70,7 +72,7 @@ const formData = ref<ExpenseFormData>({
   value: ''
 })
 
-const expenses = ref<Expense[]>([
+const expensesRemove = ref<Expense[]>([
   {
     id: 1,
     description: 'Supermercado',
@@ -128,17 +130,17 @@ const onSubmit = async (values: ExpenseFormData) => {
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     if (isEditing.value && selectedExpense.value) {
-      const index = expenses.value.findIndex(e => e.id === selectedExpense.value?.id)
+      const index = expensesRemove.value.findIndex(e => e.id === selectedExpense.value?.id)
       if (index !== -1) {
-        expenses.value[index] = {
+        expensesRemove.value[index] = {
           ...selectedExpense.value,
           ...values,
           value: Number(values.value)
         }
       }
     } else {
-      expenses.value.push({
-        id: Math.max(0, ...expenses.value.map(e => e.id)) + 1,
+      expensesRemove.value.push({
+        id: Math.max(0, ...expensesRemove.value.map(e => e.id)) + 1,
         ...values,
         value: Number(values.value)
       })
@@ -166,7 +168,7 @@ const deleteExpense = async () => {
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     if (selectedExpense.value) {
-      expenses.value = expenses.value.filter(e => e.id !== selectedExpense.value?.id)
+      expensesRemove.value = expensesRemove.value.filter(e => e.id !== selectedExpense.value?.id)
     }
 
     $q.notify({
@@ -183,4 +185,9 @@ const deleteExpense = async () => {
     deleting.value = false
   }
 }
+
+onMounted(async () => {
+  await fetchExpenses()
+  console.log(expenses)
+})
 </script>
