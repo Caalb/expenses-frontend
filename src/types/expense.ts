@@ -8,5 +8,5 @@ export interface Expense {
 export interface ExpenseFormData {
   description: string
   date: string
-  value: string
+  value: number
 }
