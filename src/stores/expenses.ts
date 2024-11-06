@@ -1,7 +1,8 @@
-import { defineStore } from 'pinia'
-import type { Expense } from '@/types/expense'
-import { ref } from 'vue'
+import { createExpense as createExpenseApi } from '@/services/expenses/createExpense'
 import { fetchExpenses as fetchExpensesApi } from '@/services/expenses/fetchExpenses'
+import type { Expense } from '@/types/expense'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useExpensesStore = defineStore('expenses', () => {
   const expenses = ref<Expense[]>([])
@@ -18,8 +19,20 @@ export const useExpensesStore = defineStore('expenses', () => {
     }
   }
 
+  const createExpense = async (expense: Omit<Expense, 'id'>) => {
+    try {
+      const response = await createExpenseApi(expense)
+      expenses.value = [response.data, ...expenses.value]
+
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
   return {
     expenses,
     fetchExpenses,
+    createExpense,
   }
 })
