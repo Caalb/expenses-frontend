@@ -6,19 +6,21 @@
       row-key="id"
       :loading="loading"
       :hide-pagination="true"
+      :pagination="{
+        rowsPerPage: 0
+      }"
     >
-      <template v-slot:body="props">
+      <template #body="props">
         <QTr :props="props">
           <QTd key="description" :props="props">
             {{ props.row.description }}
           </QTd>
-
           <QTd key="date" :props="props">
             {{ formatDate(props.row.date) }}
           </QTd>
 
-          <QTd key="value" :props="props">
-            {{ formatCurrency(props.row.value) }}
+          <QTd key="amount" :props="props">
+            {{ formatCurrency(props.row.amount) }}
           </QTd>
 
           <QTd key="actions" :props="props">
@@ -49,7 +51,7 @@
         </QTr>
       </template>
 
-      <template v-slot:no-data>
+      <template #no-data>
         <div class="full-width row flex-center q-pa-md text-grey-6">
           Nenhuma despesa encontrada
         </div>
@@ -63,9 +65,13 @@ import { QCard, QTable, QTr, QTd, QBtn, QTooltip } from 'quasar'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import type { Expense } from '@/types/expense'
+import { useExpensesStore } from '@/stores/expenses'
+import { storeToRefs } from 'pinia'
+
+const expenseStore = useExpensesStore()
+const { expenses } = storeToRefs(expenseStore)
 
 defineProps<{
-  expenses: Expense[]
   loading: boolean
 }>()
 
@@ -90,7 +96,7 @@ const columns = [
     field: 'date'
   },
   {
-    name: 'value',
+    name: 'amount',
     required: true,
     label: 'Valor',
     align: 'left' as const,
@@ -100,8 +106,9 @@ const columns = [
     name: 'actions',
     required: true,
     label: 'Ações',
-    align: 'right' as const,
-    field: 'actions'
+    align: 'center' as const,
+    field: 'actions',
+    headerStyle: 'width: 100px'
   }
 ]
 
