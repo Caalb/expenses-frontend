@@ -1,7 +1,7 @@
-import { JWT_TOKEN } from '@/constants/jwt'
 import axios, { AxiosError } from 'axios'
-import { useQuasar } from 'quasar'
-import { useRouter } from 'vue-router'
+import router from './../router'
+import { Notify } from 'quasar'
+import { JWT_TOKEN } from '@/constants/jwt'
 
 const api = axios.create({
   baseURL: 'http://localhost:3000',
@@ -27,10 +27,12 @@ api.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      const router = useRouter()
-      console.log(error)
+      Notify.create({
+        color: 'negative',
+        icon: 'warning',
+        message: 'Session expired. Please log in again.',
+      })
 
-      console.log(router.push({ name: 'login' }))
       router.push({ name: 'login' })
     }
 
