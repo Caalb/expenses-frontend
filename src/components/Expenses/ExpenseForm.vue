@@ -25,10 +25,11 @@
         :model-value="value"
         :error-message="errorMessage"
         :error="!!errorMessage"
+        :max="new Date().toISOString().split('T')[0]"
       />
     </Field>
 
-    <Field name="value" v-slot="{ field, errorMessage, value }">
+    <Field name="amount" v-slot="{ field, errorMessage, value }">
       <QInput
         outlined
         v-bind="field"
@@ -79,7 +80,10 @@ const validationSchema = toTypedSchema(
       .max(191, 'Descrição deve ter no máximo 191 caracteres'),
 
     date: z.string().min(1, 'Data é obrigatória'),
-    value: z.string().min(1, 'Valor é obrigatório').transform(Number)
+    amount: z.string()
+      .min(1, 'Valor é obrigatório')
+      .transform(Number)
+      .refine(value => value >= 0, 'Valor não pode ser negativo')
   })
 )
 
