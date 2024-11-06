@@ -9,7 +9,7 @@
 
       <QMenu auto-close>
         <QList style="min-width: 200px">
-          <QItem clickable v-close-popup @click="onMenuClick('logout')">
+          <QItem clickable @click="onMenuClick('logout')">
             <QItemSection avatar>
               <QIcon name="logout" />
             </QItemSection>
