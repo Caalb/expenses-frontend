@@ -11,8 +11,8 @@
     </div>
 
     <ExpenseTable
-      :expenses="expenses"
-      :loading="loading"
+      :expenses
+      :loading
       @edit="openEditModal"
       @delete="openDeleteModal"
     />
@@ -22,7 +22,8 @@
         <QCardSection class="row items-center q-pb-none">
           <div class="text-h6">{{ isEditing ? 'Editar' : 'Nova' }} Despesa</div>
           <QSpace />
-          <QBtn icon="close" flat round dense v-close-popup />
+
+          <QBtn icon="close" flat round dense />
         </QCardSection>
 
         <QCardSection>
@@ -57,7 +58,7 @@ import type { Expense, ExpenseFormData } from '@/types/expense'
 import { useExpensesStore } from '@/stores/expenses'
 
 const $q = useQuasar()
-const { expenses, fetchExpenses } = useExpensesStore()
+const { expenses, fetchExpenses, createExpense} = useExpensesStore()
 
 const loading = ref(false)
 const submitting = ref(false)
@@ -69,7 +70,7 @@ const selectedExpense = ref<Expense | null>(null)
 const formData = ref<ExpenseFormData>({
   description: '',
   date: '',
-  value: ''
+  value: 0
 })
 
 const expensesRemove = ref<Expense[]>([
@@ -92,7 +93,7 @@ const openCreateModal = () => {
   formData.value = {
     description: '',
     date: '',
-    value: ''
+    value: 0
   }
   showFormModal.value = true
 }
@@ -103,8 +104,9 @@ const openEditModal = (expense: Expense) => {
   formData.value = {
     description: expense.description,
     date: expense.date,
-    value: expense.value.toString()
+    value: expense.value
   }
+
   showFormModal.value = true
 }
 
@@ -119,46 +121,22 @@ const resetForm = () => {
   formData.value = {
     description: '',
     date: '',
-    value: ''
+    value: 0
   }
 }
 
 const onSubmit = async (values: ExpenseFormData) => {
-  try {
     submitting.value = true
 
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    if(isEditing.value) {
 
-    if (isEditing.value && selectedExpense.value) {
-      const index = expensesRemove.value.findIndex(e => e.id === selectedExpense.value?.id)
-      if (index !== -1) {
-        expensesRemove.value[index] = {
-          ...selectedExpense.value,
-          ...values,
-          value: Number(values.value)
-        }
-      }
-    } else {
-      expensesRemove.value.push({
-        id: Math.max(0, ...expensesRemove.value.map(e => e.id)) + 1,
-        ...values,
-        value: Number(values.value)
-      })
     }
 
-    $q.notify({
-      type: 'positive',
-      message: `Despesa ${isEditing.value ? 'atualizada' : 'criada'} com sucesso!`
-    })
-    showFormModal.value = false
-  } catch (error) {
-    $q.notify({
-      type: 'negative',
-      message: `Erro ao ${isEditing.value ? 'atualizar' : 'criar'} despesa!`
-    })
-  } finally {
+    const response = await createExpense(values)
+
+    console.log(response)
+
     submitting.value = false
-  }
 }
 
 const deleteExpense = async () => {
@@ -187,7 +165,8 @@ const deleteExpense = async () => {
 }
 
 onMounted(async () => {
+  loading.value = true
   await fetchExpenses()
-  console.log(expenses)
+  loading.value = false
 })
 </script>
