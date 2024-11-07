@@ -3,7 +3,7 @@
     @submit="onSubmit"
     class="q-gutter-md"
     :validation-schema="validationSchema"
-    :initial-values="initialValues"
+    :initial-values="formattedValues"
   >
     <Field name="description" v-slot="{ field, errorMessage , value}">
       <QInput
@@ -60,13 +60,20 @@ import { QInput, QBtn } from 'quasar'
 import { Form, Field } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
+import { formatDate } from '@/helpers/formatDate'
 import type { ExpenseFormData } from '@/types/expense'
 
-defineProps<{
+const props = defineProps<{
   initialValues: ExpenseFormData
   isEditing: boolean
   submitting: boolean
 }>()
+
+const formattedValues = {
+  date: props.initialValues.date ? formatDate(props.initialValues.date, "yyyy-MM-dd") : "",
+  amount: String(props.initialValues.amount),
+  description: props.initialValues.description
+}
 
 const emit = defineEmits<{
   (e: 'submit', values: ExpenseFormData): void
@@ -87,7 +94,8 @@ const validationSchema = toTypedSchema(
   })
 )
 
-const onSubmit = (values: ExpenseFormData) => {
-  emit('submit', values)
+const onSubmit = (values: unknown) => {
+  const expenseValues = values as ExpenseFormData;
+  emit('submit', expenseValues);
 }
 </script>
