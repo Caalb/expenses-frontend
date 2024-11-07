@@ -9,6 +9,7 @@
         <Form @submit="onSubmit" class="q-gutter-md" :validation-schema="validationSchema">
           <Field name="name" v-slot="{ errorMessage, value, field }">
             <QInput
+              class="full-width"
               type="text"
               label="Nome"
               outlined
@@ -25,6 +26,7 @@
 
           <Field name="email" v-slot="{ errorMessage, value, field }">
             <QInput
+              class="full-width"
               type="email"
               label="E-mail"
               outlined
@@ -41,6 +43,7 @@
 
           <Field name="password" v-slot="{ errorMessage, value, field }">
             <QInput
+              class="full-width"
               :type="passwordVisible ? 'text' : 'password'"
               label="Senha"
               outlined
@@ -65,6 +68,7 @@
 
           <Field name="confirmPassword" v-slot="{ errorMessage, value, field }">
             <QInput
+              class="full-width"
               :type="passwordVisible ? 'text' : 'password'"
               label="Confirmar Senha"
               outlined
