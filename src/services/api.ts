@@ -30,7 +30,7 @@ api.interceptors.response.use(
       Notify.create({
         color: 'negative',
         icon: 'warning',
-        message: 'Session expired. Please log in again.',
+        message: 'Sessão expirada, por favor, faça login novamente',
       })
 
       router.push({ name: 'login' })

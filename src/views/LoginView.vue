@@ -101,6 +101,7 @@ import { z } from 'zod';
 import { useAuthStore } from '@/stores/auth';
 import type { AxiosResponse } from 'axios';
 import { useRouter } from 'vue-router';
+import { errorHandler } from '@/helpers/errorHandler';
 
 const $q = useQuasar()
 const router = useRouter()
@@ -137,11 +138,7 @@ const onSubmit = async (values: Record<string, string>): Promise<void> => {
       return;
     }
 
-  $q.notify({
-    color: 'negative',
-    message: ((response as unknown) as Error)?.message ?? 'Falha ao realizar login',
-    icon: 'error',
-  })
+  errorHandler(response, 'Falha ao realizar login, tente novamente', $q)
 }
 </script>
 
