@@ -23,7 +23,7 @@
           <div class="text-h6">{{ isEditing ? 'Editar' : 'Nova' }} Despesa</div>
           <QSpace />
 
-          <QBtn icon="close" flat round dense />
+          <QBtn icon="close" flat round dense @click="showFormModal = false" />
         </QCardSection>
 
         <QCardSection>
@@ -42,13 +42,13 @@
       v-model="showDeleteModal"
       :expense="selectedExpense"
       :loading="deleting"
-      @confirm="deleteExpense"
+      @confirm="handleDeleteExpense"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted} from 'vue'
+import { ref, onMounted, type Ref} from 'vue'
 import { useQuasar } from 'quasar'
 import { QDialog, QCard, QCardSection, QBtn, QSpace } from 'quasar'
 import ExpenseTable from '@/components/Expenses/ExpensesTable.vue'
@@ -56,9 +56,11 @@ import ExpenseForm from '@/components/Expenses/ExpenseForm.vue'
 import DeleteExpenseDialog from '@/components/Expenses/DeleteExpenseDialog.vue'
 import type { Expense, ExpenseFormData } from '@/types/expense'
 import { useExpensesStore } from '@/stores/expenses'
+import { errorHandler } from '@/helpers/errorHandler'
+import type { AxiosError, AxiosResponse } from 'axios'
 
 const $q = useQuasar()
-const { expenses, fetchExpenses, createExpense} = useExpensesStore()
+const { expenses, fetchExpenses, createExpense, updateExpense, deleteExpense} = useExpensesStore()
 
 const loading = ref(false)
 const submitting = ref(false)
@@ -70,31 +72,18 @@ const selectedExpense = ref<Expense | null>(null)
 const formData = ref<ExpenseFormData>({
   description: '',
   date: '',
-  value: 0
+  amount: 0
 })
 
-const expensesRemove = ref<Expense[]>([
-  {
-    id: 1,
-    description: 'Supermercado',
-    date: '2024-03-05',
-    value: 256.75
-  },
-  {
-    id: 2,
-    description: 'Energia Elétrica',
-    date: '2024-03-10',
-    value: 189.90
-  }
-])
 
 const openCreateModal = () => {
   isEditing.value = false
   formData.value = {
     description: '',
     date: '',
-    value: 0
+    amount: 0
   }
+
   showFormModal.value = true
 }
 
@@ -104,7 +93,7 @@ const openEditModal = (expense: Expense) => {
   formData.value = {
     description: expense.description,
     date: expense.date,
-    value: expense.value
+    amount: expense.amount
   }
 
   showFormModal.value = true
@@ -121,47 +110,79 @@ const resetForm = () => {
   formData.value = {
     description: '',
     date: '',
-    value: 0
+    amount: 0
   }
 }
+
+type ExpenseOperation = (values?: ExpenseFormData) => Promise<AxiosResponse>
+
+const handleExpenseOperation = async ({
+  operation,
+  successMessage,
+  errorMessage,
+  values,
+  modalRef,
+}: {
+  operation: ExpenseOperation
+  successMessage: string
+  errorMessage: string
+  values?: ExpenseFormData
+  modalRef: Ref<boolean>
+}) => {
+  const response = await operation(values) as AxiosResponse | AxiosError
+
+  if (response && ~~((response.status ?? 0) / 100) === 2) {
+    $q.notify({
+      color: 'positive',
+      message: successMessage,
+      icon: 'check',
+    })
+
+    modalRef.value = false
+    resetForm()
+    return
+  }
+
+  errorHandler(response, errorMessage, $q)
+}
+
+const handleUpdateExpense = (values: ExpenseFormData) =>
+  handleExpenseOperation({
+    operation: () => updateExpense(selectedExpense.value?.id as number, values) as Promise<AxiosResponse>,
+    successMessage: 'Despesa atualizada com sucesso!',
+    errorMessage: 'Falha ao atualizar despesa',
+    values,
+    modalRef: showFormModal
+  })
+
+const handleDeleteExpense = () =>
+  handleExpenseOperation({
+    operation: () => deleteExpense(selectedExpense.value?.id as number) as Promise<AxiosResponse>,
+    successMessage: 'Despesa excluída com sucesso!',
+    errorMessage: 'Falha ao excluir despesa',
+    modalRef: showDeleteModal
+  })
+
+const handleCreateExpense = (values: ExpenseFormData) =>
+  handleExpenseOperation({
+    operation: () => createExpense(values) as Promise<AxiosResponse>,
+    successMessage: 'Despesa criada com sucesso!',
+    errorMessage: 'Falha ao criar despesa',
+    values,
+    modalRef: showFormModal
+  })
+
 
 const onSubmit = async (values: ExpenseFormData) => {
     submitting.value = true
 
     if(isEditing.value) {
-
+      return handleUpdateExpense(values)
     }
 
-    const response = await createExpense(values)
+    handleCreateExpense(values)
 
-    console.log(response)
-
-    submitting.value = false
-}
-
-const deleteExpense = async () => {
-  try {
-    deleting.value = true
-
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    if (selectedExpense.value) {
-      expensesRemove.value = expensesRemove.value.filter(e => e.id !== selectedExpense.value?.id)
-    }
-
-    $q.notify({
-      type: 'positive',
-      message: 'Despesa excluída com sucesso!'
-    })
-    showDeleteModal.value = false
-  } catch (error) {
-    $q.notify({
-      type: 'negative',
-      message: 'Erro ao excluir despesa!'
-    })
-  } finally {
-    deleting.value = false
-  }
+    submitting.value = false;
 }
 
 onMounted(async () => {
