@@ -9,7 +9,7 @@
 
       <QMenu auto-close>
         <QList style="min-width: 200px">
-          <QItem clickable @click="onMenuClick('logout')">
+          <QItem clickable @click="userLogout">
             <QItemSection avatar>
               <QIcon name="logout" />
             </QItemSection>
@@ -33,18 +33,21 @@ import {
   QIcon,
   QTooltip
 } from 'quasar'
+import { useAuthStore } from '@/stores/auth'
+import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
 
-const onMenuClick = (action: string) => {
-  switch (action) {
-    case 'logout':
-      // Implementar logout
-      break
-    case 'profile':
-      // Navegar para perfil
-      break
-    case 'settings':
-      // Navegar para configurações
-      break
-  }
+const router = useRouter()
+const $q = useQuasar()
+const { handleLogout } = useAuthStore()
+
+const userLogout = () => {
+  handleLogout()
+  router.push({ name: 'login' })
+  $q.notify({
+    color: 'negative',
+    message: 'Sessão encerrada com sucesso!',
+    icon: 'check',
+  })
 }
 </script>

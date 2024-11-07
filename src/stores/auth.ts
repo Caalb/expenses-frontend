@@ -32,8 +32,13 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem(JWT_TOKEN)
+  }
+
   return {
     handleSignIn,
     handleSignUp,
+    handleLogout,
   }
 })

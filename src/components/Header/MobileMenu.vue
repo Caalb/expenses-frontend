@@ -9,9 +9,9 @@
         </QItemSection>
 
         <QItemSection>
-          <QItemLabel>John Doe</QItemLabel>
+          <QItemLabel>Carlos Junior</QItemLabel>
 
-          <QItemLabel caption>john.doe@email.com</QItemLabel>
+          <QItemLabel caption>contato@caalb.dev</QItemLabel>
         </QItemSection>
       </QItem>
 
@@ -22,7 +22,7 @@
 
     <QSeparator />
 
-    <QItem clickable @click="onLogout">
+    <QItem clickable @click="userLogout">
       <QItemSection avatar>
         <QIcon name="logout" />
       </QItemSection>
@@ -42,8 +42,22 @@ import {
   QIcon,
   QSeparator,
 } from 'quasar'
+import { useAuthStore } from '@/stores/auth'
+import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
 
-const onLogout = () => {
+const router = useRouter()
+const $q = useQuasar()
+const { handleLogout } = useAuthStore()
+
+const userLogout = () => {
+  handleLogout()
+  router.push({ name: 'login' })
+  $q.notify({
+    color: 'negative',
+    message: 'Sessão encerrada com sucesso!',
+    icon: 'check',
+  })
 }
 </script>
 
