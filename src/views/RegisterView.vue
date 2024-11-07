@@ -6,8 +6,15 @@
       </QCardSection>
 
       <QCardSection>
-        <Form @submit="onSubmit" class="q-gutter-md" :validation-schema="validationSchema">
-          <Field name="name" v-slot="{ errorMessage, value, field }">
+        <Form
+          @submit="onSubmit"
+          class="q-gutter-md"
+          :validation-schema="validationSchema"
+        >
+          <Field
+            name="name"
+            v-slot="{ errorMessage, value, field }"
+          >
             <QInput
               class="full-width"
               type="text"
@@ -24,7 +31,10 @@
             </QInput>
           </Field>
 
-          <Field name="email" v-slot="{ errorMessage, value, field }">
+          <Field
+            name="email"
+            v-slot="{ errorMessage, value, field }"
+          >
             <QInput
               class="full-width"
               type="email"
@@ -41,7 +51,10 @@
             </QInput>
           </Field>
 
-          <Field name="password" v-slot="{ errorMessage, value, field }">
+          <Field
+            name="password"
+            v-slot="{ errorMessage, value, field }"
+          >
             <QInput
               class="full-width"
               :type="passwordVisible ? 'text' : 'password'"
@@ -66,7 +79,10 @@
             </QInput>
           </Field>
 
-          <Field name="confirmPassword" v-slot="{ errorMessage, value, field }">
+          <Field
+            name="confirmPassword"
+            v-slot="{ errorMessage, value, field }"
+          >
             <QInput
               class="full-width"
               :type="passwordVisible ? 'text' : 'password'"
@@ -98,7 +114,12 @@
       <QCardSection class="text-center q-pa-sm">
         <p class="text-grey-6">
           Já tem uma conta?
-          <QBtn flat color="primary" label="Faça login" @click="handleLogin" />
+          <QBtn
+            flat
+            color="primary"
+            label="Faça login"
+            @click="handleLogin"
+          />
         </p>
       </QCardSection>
     </QCard>

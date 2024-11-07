@@ -1,5 +1,8 @@
 <template>
-  <QHeader elevated class="bg-white text-black">
+  <QHeader
+    elevated
+    class="bg-white text-black"
+  >
     <QToolbar>
       <QBtn
         v-if=isMobile

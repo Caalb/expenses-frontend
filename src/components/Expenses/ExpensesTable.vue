@@ -1,5 +1,8 @@
 <template>
-  <QCard bordered flat>
+  <QCard
+    bordered
+    flat
+  >
     <QTable
       :rows="expenses"
       :columns="columns"
@@ -12,18 +15,30 @@
     >
       <template #body="props">
         <QTr :props="props">
-          <QTd key="description" :props="props">
+          <QTd
+            key="description"
+            :props="props"
+          >
             {{ props.row.description }}
           </QTd>
-          <QTd key="date" :props="props">
+          <QTd
+            key="date"
+            :props="props"
+          >
             {{ formatDate(props.row.date) }}
           </QTd>
 
-          <QTd key="amount" :props="props">
+          <QTd
+            key="amount"
+            :props="props"
+          >
             {{ formatCurrency(props.row.amount) }}
           </QTd>
 
-          <QTd key="actions" :props="props">
+          <QTd
+            key="actions"
+            :props="props"
+          >
             <div class="row items-center q-gutter-sm justify-end">
               <QBtn
                 flat

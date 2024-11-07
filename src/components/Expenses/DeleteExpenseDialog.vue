@@ -2,7 +2,12 @@
   <QDialog v-model="localModelValue">
     <QCard>
       <QCardSection class="row items-center">
-        <QIcon name="warning" color="warning" size="24px" class="q-mr-sm" />
+        <QIcon
+          name="warning"
+          color="warning"
+          size="24px"
+          class="q-mr-sm"
+        />
         <span class="text-h6">Confirmar Exclusão</span>
       </QCardSection>
 
@@ -14,7 +19,12 @@
       </QCardSection>
 
       <QCardActions align="right">
-        <QBtn flat label="Cancelar" color="grey-6" @click="$emit('update:modelValue', false)" />
+        <QBtn
+          flat
+          label="Cancelar"
+          color="grey-6"
+          @click="$emit('update:modelValue', false)"
+        />
         <QBtn
           flat
           label="Excluir"

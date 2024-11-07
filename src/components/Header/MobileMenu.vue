@@ -1,5 +1,8 @@
 <template>
-  <QList padding class="flex column full-height">
+  <QList
+    padding
+    class="flex column full-height"
+  >
     <div>
       <QItem>
         <QItemSection avatar>
@@ -22,7 +25,9 @@
 
     <QSeparator />
 
-    <QItem clickable @click="userLogout">
+    <QItem clickable
+           @click="userLogout"
+    >
       <QItemSection avatar>
         <QIcon name="logout" />
       </QItemSection>

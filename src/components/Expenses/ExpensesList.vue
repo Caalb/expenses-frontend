@@ -17,13 +17,22 @@
       @delete="openDeleteModal"
     />
 
-    <QDialog v-model="showFormModal" @hide="resetForm">
+    <QDialog
+      v-model="showFormModal"
+      @hide="resetForm"
+    >
       <QCard style="min-width: 400px">
         <QCardSection class="row items-center q-pb-none">
           <div class="text-h6">{{ isEditing ? 'Editar' : 'Nova' }} Despesa</div>
           <QSpace />
 
-          <QBtn icon="close" flat round dense @click="showFormModal = false" />
+          <QBtn
+            icon="close"
+            flat
+            round
+            dense
+            @click="showFormModal = false"
+          />
         </QCardSection>
 
         <QCardSection>

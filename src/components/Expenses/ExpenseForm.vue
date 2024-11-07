@@ -5,7 +5,10 @@
     :validation-schema="validationSchema"
     :initial-values="formattedValues"
   >
-    <Field name="description" v-slot="{ field, errorMessage , value}">
+    <Field
+      name="description"
+      v-slot="{ field, errorMessage , value}"
+    >
       <QInput
         outlined
         v-bind="field"
@@ -16,7 +19,10 @@
       />
     </Field>
 
-    <Field name="date" v-slot="{ field, errorMessage, value }">
+    <Field
+      name="date"
+      v-slot="{ field, errorMessage, value }"
+    >
       <QInput
         outlined
         v-bind="field"
@@ -29,7 +35,10 @@
       />
     </Field>
 
-    <Field name="amount" v-slot="{ field, errorMessage, value }">
+    <Field
+      name="amount"
+      v-slot="{ field, errorMessage, value }"
+    >
       <QInput
         outlined
         v-bind="field"
@@ -44,7 +53,11 @@
     </Field>
 
     <div class="row justify-end q-gutter-sm">
-      <QBtn label="Cancelar" color="grey-6" @click="$emit('cancel')" />
+      <QBtn
+        label="Cancelar"
+        color="grey-6"
+        @click="$emit('cancel')"
+      />
       <QBtn
         type="submit"
         :label="isEditing ? 'Salvar' : 'Criar'"

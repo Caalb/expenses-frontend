@@ -1,6 +1,10 @@
 <template>
   <div class="row items-center q-gutter-sm">
-    <QBtn round flat class="q-ml-sm">
+    <QBtn
+      round
+      flat
+      class="q-ml-sm"
+    >
       <QAvatar size="32px">
         <img src="https://e1.pngegg.com/pngimages/896/660/png-clipart-pikachu-bymika-pikachu-illustration-thumbnail.png" />
       </QAvatar>
@@ -9,7 +13,10 @@
 
       <QMenu auto-close>
         <QList style="min-width: 200px">
-          <QItem clickable @click="userLogout">
+          <QItem
+            clickable
+            @click="userLogout"
+          >
             <QItemSection avatar>
               <QIcon name="logout" />
             </QItemSection>

@@ -6,8 +6,15 @@
       </QCardSection>
 
       <QCardSection>
-        <Form @submit="onSubmit" class="q-gutter-md" :validation-schema="validationSchema">
-          <Field name="email" v-slot="{ errorMessage, value, field }">
+        <Form
+          @submit="onSubmit"
+          class="q-gutter-md"
+          :validation-schema="validationSchema"
+        >
+          <Field
+            name="email"
+            v-slot="{ errorMessage, value, field }"
+          >
             <QInput
               type="email"
               label="E-mail"
@@ -24,7 +31,10 @@
             </QInput>
           </Field>
 
-          <Field name="password" v-slot="{ errorMessage, value, field }">
+          <Field
+            name="password"
+            v-slot="{ errorMessage, value, field }"
+          >
             <QInput
               :type="passwordVisible ? 'text' : 'password'"
               label="Senha"
@@ -64,7 +74,12 @@
       <QCardSection class="text-center q-pa-sm">
         <p class="text-grey-6">
           Não tem uma conta?
-          <QBtn flat color="primary" label="Registre-se" @click="handleRegister" />
+          <QBtn
+            flat
+            color="primary"
+            label="Registre-se"
+            @click="handleRegister"
+          />
         </p>
       </QCardSection>
     </QCard>
