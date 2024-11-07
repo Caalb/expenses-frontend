@@ -69,31 +69,18 @@ const showFormModal = ref(false)
 const showDeleteModal = ref(false)
 const isEditing = ref(false)
 const selectedExpense = ref<Expense | null>(null)
-const formData = ref<ExpenseFormData>({
+  const formData = ref<ExpenseFormData>({
   description: '',
   date: '',
-  amount: 0
+  amount: ''
 })
-
 
 const openCreateModal = () => {
   isEditing.value = false
   formData.value = {
     description: '',
     date: '',
-    amount: 0
-  }
-
-  showFormModal.value = true
-}
-
-const openEditModal = (expense: Expense) => {
-  isEditing.value = true
-  selectedExpense.value = expense
-  formData.value = {
-    description: expense.description,
-    date: expense.date,
-    amount: expense.amount
+    amount: ''
   }
 
   showFormModal.value = true
@@ -104,13 +91,25 @@ const openDeleteModal = (expense: Expense) => {
   showDeleteModal.value = true
 }
 
+const openEditModal = (expense: Expense) => {
+  isEditing.value = true
+  selectedExpense.value = expense
+  formData.value = {
+    description: expense.description,
+    date: expense.date,
+    amount: expense.amount.toString()
+  }
+
+  showFormModal.value = true
+}
+
 const resetForm = () => {
   isEditing.value = false
   selectedExpense.value = null
   formData.value = {
     description: '',
     date: '',
-    amount: 0
+    amount: ''
   }
 }
 
@@ -177,10 +176,10 @@ const onSubmit = async (values: ExpenseFormData) => {
     submitting.value = true
 
     if(isEditing.value) {
-      return handleUpdateExpense(values)
+      handleUpdateExpense(values)
+    } else {
+      handleCreateExpense(values)
     }
-
-    handleCreateExpense(values)
 
     submitting.value = false;
 }
