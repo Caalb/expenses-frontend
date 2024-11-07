@@ -31,6 +31,9 @@
 import { QDialog, QCard, QCardSection, QCardActions, QBtn, QIcon } from 'quasar'
 import type { Expense } from '@/types/expense'
 import { ref, watch } from 'vue'
+import { useExpensesStore } from '@/stores/expenses'
+
+const { deleteExpense } = useExpensesStore()
 
 const props = defineProps<{
   modelValue: boolean
