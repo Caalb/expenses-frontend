@@ -1,0 +1,96 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HeaderActions > should match snapshot 1`] = `
+"<main data-v-bf0653ef="" class="q-page flex flex-center" style="min-height: 768px;">
+  <div data-v-bf0653ef="" class="q-card register-card">
+    <div data-v-bf0653ef="" class="q-card__section q-card__section--vert text-center">
+      <h5 data-v-bf0653ef="" class="text-h4 q-mt-none q-mb-md text-grey-8">Registro</h5>
+    </div>
+    <div data-v-bf0653ef="" class="q-card__section q-card__section--vert">
+      <form data-v-bf0653ef="" novalidate="" class="q-gutter-md" for="register-form" data-testid="register-form"><label data-v-bf0653ef="" class="q-field row no-wrap items-start q-field--outlined q-input q-field--labeled q-field--with-bottom full-width" for="name">
+          <!---->
+          <div class="q-field__inner relative-position col self-stretch">
+            <div class="q-field__control relative-position row no-wrap" tabindex="-1">
+              <div class="q-field__prepend q-field__marginal row no-wrap items-center"><i data-v-bf0653ef="" class="q-icon notranslate material-icons" aria-hidden="true" role="presentation">person</i></div>
+              <div class="q-field__control-container col relative-position row no-wrap q-anchor--skip"><input class="q-field__native q-placeholder" tabindex="0" aria-label="Nome" name="name" data-testid="name-input" id="name" type="text" value="">
+                <div class="q-field__label no-pointer-events absolute ellipsis">Nome</div>
+                <!---->
+              </div>
+            </div>
+            <div class="q-field__bottom row items-start q-field__bottom--animated">
+              <transition-stub name="q-transition--field-message" appear="false" persisted="false" css="true">
+                <div class="q-field__messages col"></div>
+              </transition-stub>
+              <!---->
+            </div>
+          </div>
+          <!---->
+        </label><label data-v-bf0653ef="" class="q-field row no-wrap items-start q-field--outlined q-input q-field--labeled q-field--with-bottom full-width" for="email">
+          <!---->
+          <div class="q-field__inner relative-position col self-stretch">
+            <div class="q-field__control relative-position row no-wrap" tabindex="-1">
+              <div class="q-field__prepend q-field__marginal row no-wrap items-center"><i data-v-bf0653ef="" class="q-icon notranslate material-icons" aria-hidden="true" role="presentation">email</i></div>
+              <div class="q-field__control-container col relative-position row no-wrap q-anchor--skip"><input class="q-field__native q-placeholder" tabindex="0" aria-label="E-mail" name="email" data-testid="email-input" id="email" type="email" value="">
+                <div class="q-field__label no-pointer-events absolute ellipsis">E-mail</div>
+                <!---->
+              </div>
+            </div>
+            <div class="q-field__bottom row items-start q-field__bottom--animated">
+              <transition-stub name="q-transition--field-message" appear="false" persisted="false" css="true">
+                <div class="q-field__messages col"></div>
+              </transition-stub>
+              <!---->
+            </div>
+          </div>
+          <!---->
+        </label><label data-v-bf0653ef="" class="q-field row no-wrap items-start q-field--outlined q-input q-field--labeled q-field--with-bottom full-width" for="password">
+          <!---->
+          <div class="q-field__inner relative-position col self-stretch">
+            <div class="q-field__control relative-position row no-wrap" tabindex="-1">
+              <div class="q-field__prepend q-field__marginal row no-wrap items-center"><i data-v-bf0653ef="" class="q-icon notranslate material-icons" aria-hidden="true" role="presentation">lock</i></div>
+              <div class="q-field__control-container col relative-position row no-wrap q-anchor--skip"><input class="q-field__native q-placeholder" tabindex="0" aria-label="Senha" name="password" data-testid="password-input" id="password" type="password" value="">
+                <div class="q-field__label no-pointer-events absolute ellipsis">Senha</div>
+                <!---->
+              </div>
+              <div class="q-field__append q-field__marginal row no-wrap items-center"><i data-v-bf0653ef="" class="q-icon notranslate material-icons cursor-pointer" aria-hidden="true" role="presentation">visibility_off</i></div>
+            </div>
+            <div class="q-field__bottom row items-start q-field__bottom--animated">
+              <transition-stub name="q-transition--field-message" appear="false" persisted="false" css="true">
+                <div class="q-field__messages col"></div>
+              </transition-stub>
+              <!---->
+            </div>
+          </div>
+          <!---->
+        </label><label data-v-bf0653ef="" class="q-field row no-wrap items-start q-field--outlined q-input q-field--labeled q-field--with-bottom full-width" for="confirmPassword">
+          <!---->
+          <div class="q-field__inner relative-position col self-stretch">
+            <div class="q-field__control relative-position row no-wrap" tabindex="-1">
+              <div class="q-field__prepend q-field__marginal row no-wrap items-center"><i data-v-bf0653ef="" class="q-icon notranslate material-icons" aria-hidden="true" role="presentation">lock</i></div>
+              <div class="q-field__control-container col relative-position row no-wrap q-anchor--skip"><input class="q-field__native q-placeholder" tabindex="0" aria-label="Confirmar Senha" name="confirmPassword" data-testid="confirmPassword-input" id="confirmPassword" type="password" value="">
+                <div class="q-field__label no-pointer-events absolute ellipsis">Confirmar Senha</div>
+                <!---->
+              </div>
+            </div>
+            <div class="q-field__bottom row items-start q-field__bottom--animated">
+              <transition-stub name="q-transition--field-message" appear="false" persisted="false" css="true">
+                <div class="q-field__messages col"></div>
+              </transition-stub>
+              <!---->
+            </div>
+          </div>
+          <!---->
+        </label>
+        <div data-v-bf0653ef="" class="full-width q-mt-md"><button data-v-bf0653ef="" class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-primary text-white q-btn--actionable q-focusable q-hoverable full-width" tabindex="0" type="submit"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><span class="block">Registrar</span></span>
+            <transition-stub name="q-transition--fade" appear="false" persisted="false" css="true">
+              <!---->
+            </transition-stub>
+          </button></div>
+      </form>
+    </div>
+    <div data-v-bf0653ef="" class="q-card__section q-card__section--vert text-center q-pa-sm">
+      <p data-v-bf0653ef="" class="text-grey-6"> Já tem uma conta? <button data-v-bf0653ef="" class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-primary q-btn--actionable q-focusable q-hoverable" tabindex="0" type="button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><span class="block">Faça login</span></span></button></p>
+    </div>
+  </div>
+</main>"
+`;
