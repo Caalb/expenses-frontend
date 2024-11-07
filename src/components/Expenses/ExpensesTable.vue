@@ -61,12 +61,11 @@
 </template>
 
 <script setup lang="ts">
-import { QCard, QTable, QTr, QTd, QBtn, QTooltip } from 'quasar'
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import type { Expense } from '@/types/expense'
+import { formatDate } from '@/helpers/formatDate'
 import { useExpensesStore } from '@/stores/expenses'
+import type { Expense } from '@/types/expense'
 import { storeToRefs } from 'pinia'
+import { QBtn, QCard, QTable, QTd, QTooltip, QTr } from 'quasar'
 
 const expenseStore = useExpensesStore()
 const { expenses } = storeToRefs(expenseStore)
@@ -111,10 +110,6 @@ const columns = [
     headerStyle: 'width: 100px'
   }
 ]
-
-const formatDate = (date: string) => {
-  return format(new Date(date), 'dd/MM/yyyy', { locale: ptBR })
-}
 
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('pt-BR', {
