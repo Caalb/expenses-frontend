@@ -9,7 +9,7 @@
       <QCardSection>
         Tem certeza que deseja excluir esta despesa?
         <div class="text-grey-8 q-mt-sm">
-          {{ expense?.description }} - {{ formatCurrency(expense?.value) }}
+          {{ expense?.description }} - {{ formatCurrency(Number(expense?.amount)) }}
         </div>
       </QCardSection>
 
