@@ -4,6 +4,8 @@
     class="q-gutter-md"
     :validation-schema="validationSchema"
     :initial-values="formattedValues"
+    for="expense-form"
+    data-testid="expense-form"
   >
     <Field
       name="description"
@@ -16,6 +18,8 @@
         label="Descrição"
         :error-message="errorMessage"
         :error="!!errorMessage"
+        data-testid="description-input"
+        for="description-input"
       />
     </Field>
 
@@ -32,6 +36,8 @@
         :error-message="errorMessage"
         :error="!!errorMessage"
         :max="new Date().toISOString().split('T')[0]"
+        data-testid="date-input"
+        for="date-input"
       />
     </Field>
 
@@ -49,6 +55,8 @@
         prefix="R$"
         :error-message="errorMessage"
         :error="!!errorMessage"
+        data-testid="amount-input"
+        for="amount-input"
       />
     </Field>
 
@@ -57,12 +65,14 @@
         label="Cancelar"
         color="grey-6"
         @click="$emit('cancel')"
+        data-testid="cancel-button"
       />
       <QBtn
         type="submit"
         :label="isEditing ? 'Salvar' : 'Criar'"
         color="primary"
         :loading="submitting"
+        data-testid="submit-button"
       />
     </div>
   </Form>

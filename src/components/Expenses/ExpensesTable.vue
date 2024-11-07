@@ -46,6 +46,7 @@
                 color="primary"
                 icon="edit"
                 size="sm"
+                data-testid="edit-button"
                 @click="$emit('edit', props.row)"
               >
                 <QTooltip>Editar</QTooltip>
@@ -57,6 +58,7 @@
                 color="negative"
                 icon="delete"
                 size="sm"
+                data-testid="delete-button"
                 @click="$emit('delete', props.row)"
               >
                 <QTooltip>Excluir</QTooltip>

@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ExpenseForm > should match snapshot 1`] = `
+"<form novalidate="" class="q-gutter-md" for="expense-form" data-testid="expense-form"><label class="q-field row no-wrap items-start q-field--outlined q-input q-field--float q-field--labeled q-field--with-bottom" for="description-input">
+    <!---->
+    <div class="q-field__inner relative-position col self-stretch">
+      <div class="q-field__control relative-position row no-wrap" tabindex="-1">
+        <div class="q-field__control-container col relative-position row no-wrap q-anchor--skip"><input class="q-field__native q-placeholder" tabindex="0" aria-label="Descrição" name="description" data-testid="description-input" id="description-input" type="text" value="Expense 1">
+          <div class="q-field__label no-pointer-events absolute ellipsis">Descrição</div>
+          <!---->
+        </div>
+      </div>
+      <div class="q-field__bottom row items-start q-field__bottom--animated">
+        <transition-stub name="q-transition--field-message" appear="false" persisted="false" css="true">
+          <div class="q-field__messages col"></div>
+        </transition-stub>
+        <!---->
+      </div>
+    </div>
+    <!---->
+  </label><label class="q-field row no-wrap items-start q-field--outlined q-input q-field--float q-field--labeled q-field--with-bottom" for="date-input">
+    <!---->
+    <div class="q-field__inner relative-position col self-stretch">
+      <div class="q-field__control relative-position row no-wrap" tabindex="-1">
+        <div class="q-field__control-container col relative-position row no-wrap q-anchor--skip"><input class="q-field__native q-placeholder" tabindex="0" aria-label="Data" name="date" max="2024-11-07" data-testid="date-input" id="date-input" type="date" value="2022-12-31">
+          <div class="q-field__label no-pointer-events absolute ellipsis">Data</div>
+          <!---->
+        </div>
+      </div>
+      <div class="q-field__bottom row items-start q-field__bottom--animated">
+        <transition-stub name="q-transition--field-message" appear="false" persisted="false" css="true">
+          <div class="q-field__messages col"></div>
+        </transition-stub>
+        <!---->
+      </div>
+    </div>
+    <!---->
+  </label><label class="q-field row no-wrap items-start q-field--outlined q-input q-field--float q-field--labeled q-field--with-bottom" for="amount-input">
+    <!---->
+    <div class="q-field__inner relative-position col self-stretch">
+      <div class="q-field__control relative-position row no-wrap" tabindex="-1">
+        <div class="q-field__control-container col relative-position row no-wrap q-anchor--skip">
+          <div class="q-field__prefix no-pointer-events row items-center">R$</div><input class="q-field__native q-placeholder" tabindex="0" aria-label="Valor" name="amount" step="0.01" data-testid="amount-input" id="amount-input" type="number" value="100">
+          <div class="q-field__label no-pointer-events absolute ellipsis">Valor</div>
+          <!---->
+        </div>
+      </div>
+      <div class="q-field__bottom row items-start q-field__bottom--animated">
+        <transition-stub name="q-transition--field-message" appear="false" persisted="false" css="true">
+          <div class="q-field__messages col"></div>
+        </transition-stub>
+        <!---->
+      </div>
+    </div>
+    <!---->
+  </label>
+  <div class="row justify-end q-gutter-sm"><button class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-grey-6 text-white q-btn--actionable q-focusable q-hoverable" tabindex="0" type="button" data-testid="cancel-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><span class="block">Cancelar</span></span></button><button class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-primary text-white q-btn--actionable q-focusable q-hoverable" tabindex="0" type="submit" data-testid="submit-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><span class="block">Criar</span></span>
+      <transition-stub name="q-transition--fade" appear="false" persisted="false" css="true">
+        <!---->
+      </transition-stub>
+    </button></div>
+</form>"
+`;

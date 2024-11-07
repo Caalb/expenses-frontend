@@ -1,0 +1,72 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ExpensesTable > should display expenses when store has data 1`] = `
+"<div class="q-card q-card--bordered q-card--flat no-shadow">
+  <div class="q-table__container q-table--horizontal-separator column no-wrap q-table__card q-table--no-wrap">
+    <!---->
+    <div class="q-table__middle scroll">
+      <table class="q-table">
+        <thead>
+          <tr>
+            <th class="text-left">Descrição</th>
+            <th class="text-left">Data</th>
+            <th class="text-left">Valor</th>
+            <th class="text-center" style="width: 100px;">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="q-tr ">
+            <td class="q-td text-left">Expense 1</td>
+            <td class="q-td text-left">31/12/2022</td>
+            <td class="q-td text-left">R$&nbsp;100,00</td>
+            <td class="q-td text-center">
+              <div class="row items-center q-gutter-sm justify-end"><button class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-primary q-btn--actionable q-focusable q-hoverable" style="font-size: 10px;" tabindex="0" type="button" data-testid="edit-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon notranslate material-icons" aria-hidden="true" role="img">edit</i><!----></span></button><button class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-negative q-btn--actionable q-focusable q-hoverable" style="font-size: 10px;" tabindex="0" type="button" data-testid="delete-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon notranslate material-icons" aria-hidden="true" role="img">delete</i><!----></span></button></div>
+            </td>
+          </tr>
+          <tr class="q-tr ">
+            <td class="q-td text-left">Expense 2</td>
+            <td class="q-td text-left">01/01/2023</td>
+            <td class="q-td text-left">R$&nbsp;200,00</td>
+            <td class="q-td text-center">
+              <div class="row items-center q-gutter-sm justify-end"><button class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-primary q-btn--actionable q-focusable q-hoverable" style="font-size: 10px;" tabindex="0" type="button" data-testid="edit-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon notranslate material-icons" aria-hidden="true" role="img">edit</i><!----></span></button><button class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-negative q-btn--actionable q-focusable q-hoverable" style="font-size: 10px;" tabindex="0" type="button" data-testid="delete-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon notranslate material-icons" aria-hidden="true" role="img">delete</i><!----></span></button></div>
+            </td>
+          </tr>
+          <tr class="q-tr ">
+            <td class="q-td text-left">Expense 3</td>
+            <td class="q-td text-left">02/01/2023</td>
+            <td class="q-td text-left">R$&nbsp;300,00</td>
+            <td class="q-td text-center">
+              <div class="row items-center q-gutter-sm justify-end"><button class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-primary q-btn--actionable q-focusable q-hoverable" style="font-size: 10px;" tabindex="0" type="button" data-testid="edit-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon notranslate material-icons" aria-hidden="true" role="img">edit</i><!----></span></button><button class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-negative q-btn--actionable q-focusable q-hoverable" style="font-size: 10px;" tabindex="0" type="button" data-testid="delete-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon notranslate material-icons" aria-hidden="true" role="img">delete</i><!----></span></button></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!---->
+  </div>
+</div>"
+`;
+
+exports[`ExpensesTable without expenses > should display no expenses message when store is empty 1`] = `
+"<div class="q-card q-card--bordered q-card--flat no-shadow">
+  <div class="q-table__container q-table--horizontal-separator column no-wrap q-table__card q-table--no-wrap">
+    <!---->
+    <div class="q-table__middle scroll">
+      <table class="q-table">
+        <thead>
+          <tr>
+            <th class="text-left">Descrição</th>
+            <th class="text-left">Data</th>
+            <th class="text-left">Valor</th>
+            <th class="text-center" style="width: 100px;">Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="q-table__bottom row items-center q-table__bottom--nodata">
+      <div class="full-width row flex-center q-pa-md text-grey-6"> Nenhuma despesa encontrada </div>
+    </div>
+  </div>
+</div>"
+`;
