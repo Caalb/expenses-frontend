@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HeaderActions > should render 1`] = `"<div class="row items-center q-gutter-sm"><button class="q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round q-btn--actionable q-focusable q-hoverable q-ml-sm" tabindex="0" type="button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><div class="q-avatar" style="font-size: 32px;"><div class="q-avatar__content row flex-center overflow-hidden"><img src="https://e1.pngegg.com/pngimages/896/660/png-clipart-pikachu-bymika-pikachu-illustration-thumbnail.png"></div></div><!----><!----></span></button></div>"`;
