@@ -16,6 +16,7 @@
               v-bind="field"
               :error-message="errorMessage"
               :error="!!errorMessage"
+              class="full-width"
             >
               <template #prepend>
                 <QIcon name="email" />
@@ -32,7 +33,7 @@
               v-bind="field"
               :error-message="errorMessage"
               :error="!!errorMessage"
-
+              class="full-width"
             >
               <template #prepend>
                 <QIcon name="lock" />
