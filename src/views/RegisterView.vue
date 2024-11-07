@@ -179,8 +179,6 @@ const handleLogin = (): void => {
 }
 
 const onSubmit = async (values: Record<string, string>): Promise<void> => {
-  console.log(values)
-  console.log("CHAMANDOOO")
   loading.value = true
   const response = await handleSignUp({
     name: values.name,
