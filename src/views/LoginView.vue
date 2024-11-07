@@ -10,6 +10,8 @@
           @submit="onSubmit"
           class="q-gutter-md"
           :validation-schema="validationSchema"
+          for="login-form"
+          data-testid="login-form"
         >
           <Field
             name="email"
@@ -24,6 +26,8 @@
               :error-message="errorMessage"
               :error="!!errorMessage"
               class="full-width"
+              for="email"
+              data-testid="email-input"
             >
               <template #prepend>
                 <QIcon name="email" />
@@ -44,6 +48,8 @@
               :error-message="errorMessage"
               :error="!!errorMessage"
               class="full-width"
+              for="password"
+              data-testid="password-input"
             >
               <template #prepend>
                 <QIcon name="lock" />

@@ -10,6 +10,8 @@
           @submit="onSubmit"
           class="q-gutter-md"
           :validation-schema="validationSchema"
+          for="register-form"
+          data-testid="register-form"
         >
           <Field
             name="name"
@@ -24,6 +26,8 @@
               v-bind="field"
               :error-message="errorMessage"
               :error="!!errorMessage"
+              for="name"
+              data-testid="name-input"
             >
               <template #prepend>
                 <QIcon name="person" />
@@ -44,6 +48,8 @@
               v-bind="field"
               :error-message="errorMessage"
               :error="!!errorMessage"
+              for="email"
+              data-testid="email-input"
             >
               <template #prepend>
                 <QIcon name="email" />
@@ -64,6 +70,8 @@
               v-bind="field"
               :error-message="errorMessage"
               :error="!!errorMessage"
+              for="password"
+              data-testid="password-input"
             >
               <template #prepend>
                 <QIcon name="lock" />
@@ -92,6 +100,8 @@
               v-bind="field"
               :error-message="errorMessage"
               :error="!!errorMessage"
+              for="confirmPassword"
+              data-testid="confirmPassword-input"
             >
               <template #prepend>
                 <QIcon name="lock" />
@@ -169,6 +179,8 @@ const handleLogin = (): void => {
 }
 
 const onSubmit = async (values: Record<string, string>): Promise<void> => {
+  console.log(values)
+  console.log("CHAMANDOOO")
   loading.value = true
   const response = await handleSignUp({
     name: values.name,
