@@ -2,6 +2,7 @@
   <QHeader elevated class="bg-white text-black">
     <QToolbar>
       <QBtn
+        v-if=isMobile
         flat
         dense
         round
@@ -29,11 +30,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { QHeader, QToolbar, QToolbarTitle, QBtn, QDrawer } from 'quasar'
+import { useWindowSize } from '@vueuse/core'
 import HeaderActions from './HeaderActions.vue'
 import MobileMenu from './MobileMenu.vue'
 
+const isMobile = computed(() => useWindowSize().width.value <= 768)
 const leftDrawerOpen = ref(false)
 const toggleLeftDrawer = () => leftDrawerOpen.value = !leftDrawerOpen.value
 </script>
