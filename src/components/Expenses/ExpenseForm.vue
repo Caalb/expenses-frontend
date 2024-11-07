@@ -71,10 +71,11 @@ const props = defineProps<{
 
 const formattedValues = {
   date: props.initialValues.date ? formatDate(props.initialValues.date, "yyyy-MM-dd") : "",
-  amount: String(props.initialValues.amount),
-  description: props.initialValues.description
+  amount: (props.initialValues.amount as number | string) === 'number'
+    ? (props.initialValues.amount as unknown as number).toString()
+    : (props.initialValues.amount as string) || "",
+  description: props.initialValues.description || ""
 }
-
 const emit = defineEmits<{
   (e: 'submit', values: ExpenseFormData): void
   (e: 'cancel'): void
@@ -87,15 +88,20 @@ const validationSchema = toTypedSchema(
       .max(191, 'Descrição deve ter no máximo 191 caracteres'),
 
     date: z.string().min(1, 'Data é obrigatória'),
-    amount: z.string()
-      .min(1, 'Valor é obrigatório')
-      .transform(Number)
-      .refine(value => value >= 0, 'Valor não pode ser negativo')
+
+    amount: z.preprocess(
+      (val) => (typeof val === 'string' ? val : String(val)),
+      z.string()
+        .min(1, 'Valor é obrigatório')
+        .refine((val) => !isNaN(Number(val)), 'Valor deve ser um número válido')
+        .refine((val) => Number(val) > 0, 'Valor deve ser maior que zero')
+        .transform((val) => Number(parseFloat(val).toFixed(2)))
+    )
   })
 )
 
 const onSubmit = (values: unknown) => {
-  const expenseValues = values as ExpenseFormData;
-  emit('submit', expenseValues);
+  const expenseValues = values as ExpenseFormData
+  emit('submit', expenseValues)
 }
 </script>
