@@ -15,7 +15,6 @@
         <QList style="min-width: 200px">
           <QItem
             clickable
-            data-testid="logout-button"
             @click="userLogout"
           >
             <QItemSection avatar>
