@@ -2,11 +2,11 @@ export interface Expense {
   id: number
   description: string
   date: string
-  amount: number
+  amount: string
 }
 
 export interface ExpenseFormData {
   description: string
   date: string
-  amount: number
+  amount: string
 }
