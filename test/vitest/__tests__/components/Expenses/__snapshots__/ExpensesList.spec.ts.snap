@@ -3,7 +3,7 @@
 exports[`ExpensesList > should match snapshot 1`] = `
 "<div class="q-pa-md">
   <div class="row items-center justify-between q-mb-md">
-    <div class="text-h6">Minhas Despesas</div><button class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-primary text-white q-btn--actionable q-focusable q-hoverable" tabindex="0" type="button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon on-left notranslate material-icons" aria-hidden="true" role="img">add</i><span class="block">Nova Despesa</span></span></button>
+    <div class="text-h6">Minhas Despesas</div><button class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle bg-primary text-white q-btn--actionable q-focusable q-hoverable" tabindex="0" type="button" data-testid="add-button"><span class="q-focus-helper"></span><span class="q-btn__content text-center col items-center q-anchor--skip justify-center row"><i class="q-icon on-left notranslate material-icons" aria-hidden="true" role="img">add</i><span class="block">Nova Despesa</span></span></button>
   </div>
   <div class="q-card q-card--bordered q-card--flat no-shadow" expenses="">
     <div class="q-table__container q-table--horizontal-separator column no-wrap q-table__card q-table--no-wrap">

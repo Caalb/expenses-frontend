@@ -5,6 +5,7 @@
       <QBtn
         color="primary"
         icon="add"
+        data-testid="add-button"
         label="Nova Despesa"
         @click="openCreateModal"
       />
