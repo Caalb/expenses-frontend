@@ -1,45 +1,44 @@
+# [expenses.caalb.dev/login](https://expenses.caalb.dev/login)
+
 # expenses-frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+## Como Executar o Projeto
 
-## Recommended IDE Setup
+1. Certifique-se de ter o Node.js e o npm instalados em sua máquina.
+2. Clone este repositório:
+    ```bash
+    git clone https://github.com/seu-usuario/expenses-frontend.git
+    ```
+3. Acesse o diretório do projeto:
+    ```bash
+    cd expenses-frontend
+    ```
+4. Instale as dependências:
+    ```bash
+    npm install
+    ```
+5. Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+6. Acesse a aplicação em seu navegador: [http://localhost:5173/](http://localhost:5173/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Tecnologias utilizadas
 
-## Type Support for `.vue` Imports in TS
+* Vue 3
+* TypeScript
+* Quasar
+* Vite
+* Pinia
+* SASS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### Bibliotecas utilizadas
 
-## Customize configuration
+* Zod
+* Vee-validate
+* Date-fns
+* VueUse
+* Axios
 
-See [Vite Configuration Reference](https://vite.dev/config/).
 
-## Project Setup
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
