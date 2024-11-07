@@ -78,5 +78,6 @@ describe('HeaderActions', () => {
       name: 'test',
       email: 'test@test.com',
       password: '123456',
+    })
   })
 })
