@@ -176,9 +176,9 @@ const onSubmit = async (values: ExpenseFormData) => {
     submitting.value = true
 
     if(isEditing.value) {
-      handleUpdateExpense(values)
+      await handleUpdateExpense(values)
     } else {
-      handleCreateExpense(values)
+      await handleCreateExpense(values)
     }
 
     submitting.value = false;
